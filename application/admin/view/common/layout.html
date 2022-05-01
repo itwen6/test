@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{block name='title'} 后台{/block}</title>
+    <!-- css -->
+    {include file="common/css" /}
+  </head>
+
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+      <!-- Navbar -->
+      {include file="common/navbar" /}
+
+      <!-- Sidebar -->
+      {include file="common/sidebar"}
+      
+      <!-- contents -->
+      {block name="body"}
+      <h1 class="m-0">欢迎管理员{$Think.session.adminInfo.user_name}</h1>
+      {/block}
+    </div>
+
+    {include file='common/js' /}
+  </body>
+</html>

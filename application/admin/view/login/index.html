@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{block name='title'}后台登录{/block}</title>
+    {include file="common/css" /}
+  </head>
+  <style>
+    .captcha-wrapper {
+      display: flex;
+      height: 38px;
+      justify-content: space-between;
+    }
+    .captcha-wrapper input {
+      flex: 1;
+    }
+    .captcha-image {
+      margin-left: 20px;
+      box-sizing: border-box;
+      width: 150px;
+    }
+    .captcha-image img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+    function getImageSrc(img) {
+      img.src = "{:url('login/verify')}?" + Math.random();
+    }
+  </script>
+  <body class="hold-transition register-page">
+    <div class="register-box">
+      <div class="card-header text-center">
+        <a href="/admin/login/index" class="h1"><b>后台登录</b></a>
+      </div>
+      <div class="card-body">
+        <form action="/admin/login/login" method="post">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" name="user_name" placeholder="用户名" />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" name="password" placeholder="密码" />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          {if $enableCaptcha}
+          <div class="captcha-wrapper">
+            <input type="text" class="form-control" name="captcha" placeholder="验证码" />
+            <div class="captcha-image">
+              <img src="{:url('login/verify')}" onclick="getImageSrc(this)" alt="" />
+            </div>
+          </div>
+          {/if}
+          <div class="social-auth-links text-center">
+            <div class="social-auth-links text-center">
+              <button type="submit" class="btn btn-block btn-primary">登录</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  {include file="common/js"/}
+</html>

@@ -1,0 +1,13 @@
+/.idea
+/.vscode
+/vendor
+*.log
+.env
+.DS_Store
+/归档
+/runtime
+/extend
+*.png
+*.jpg
+*.zip
+/houtai

@@ -1,0 +1,45 @@
+{extend name="index/index"/}
+<!--  -->
+{block name="body"}
+<div class="content-wrapper">
+  <h1 class="page-header">{$title}</h1>
+  <div class="search-form-wrapper">
+    <a class="btn btn-primary" href="/admin/role/create" role="button">添加角色</a>
+  </div>
+
+  <section class="content">
+    <table class="table table-bordered table-hover">
+      <tbody>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">角色名</th>
+          <th scope="col">角色创建时间</th>
+          <th scope="col">角色描述</th>
+          <th scope="col">角色权限</th>
+          <th scope="col">操作</th>
+        </tr>
+        {volist name="dataRole" id="val"}
+        <tr>
+          <th scope="row">{$val.id}</th>
+          <td>{$val.role_name}</td>
+          <td>{$val.create_time}</td>
+          <td>{$val.describe}</td>
+          <td>{$val.permissions_name}</td>
+          <td>
+            <a class="btn btn-success btn-xs" href="/admin/role/{$val.id}/edit" role="button">编辑角色</a>
+            <a class="btn btn-success btn-xs" href="/admin/role/{$val.id}" role="button">角色详情</a>
+            <form action="/admin/role/{$val.id}" method="POST" class="inline-btn-form">
+              <input type="hidden" name="_method" value="delete" />
+              <button class="btn btn-danger btn-xs" type="submit">删除角色</button>
+            </form>
+            <!-- get -->
+            <!-- TODO: !!完善分配权限功能 -->
+            <a class="btn btn-info btn-xs" href="" role="button">分配权限</a>
+          </td>
+        </tr>
+        {/volist}
+      </tbody>
+    </table>
+  </section>
+</div>
+{/block}

@@ -1,0 +1,112 @@
+{extend name="common/layout" /}
+<!--  -->
+{block name='body'}
+<div class="content-wrapper">
+  <h1 class="page-header">{$title}</h1>
+  <div class="search-form-wrapper">
+    <form class="form-inline" method="get">
+      <input class="form-control mr-sm-2" type="search" placeholder="输入管理员名称" name="username" />
+      <button class="btn btn-outline-success my-sm-0 mr-sm-2" type="submit">搜索用户</button>
+      <a class="btn btn-outline-primary my-sm-0 mr-sm-2" href="/admin/permission">重置搜索</a>
+      <a class="btn btn-primary" href="/admin/permission/create" role="button">添加用户</a>
+    </form>
+  </div>
+
+  <table class="table table-bordered table-hover">
+    <tbody>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">权限描述</th>
+        <th scope="col">权限类型</th>
+        <th scope="col">请求方式</th>
+        <th scope="col">请求路径</th>
+        <th scope="col">操作</th>
+      </tr>
+      {volist name="datas.data" id="val"}
+      <tr>
+        <th scope="row">{$val.id}</th>
+        <td>{$val.desc}</td>
+        <td>{$val.type}</td>
+        <td>{$val.method}</td>
+        <td>{$val.path}</td>
+        <td>
+          <a class="btn btn-success btn-xs" href="/admin/admin/getUpdateUser/{$val.id}" role="button">编辑用户</a>
+          <a class="btn btn-danger btn-xs" href="/admin/admin/deleteUser/{$val.id}" role="button">删除用户</a>
+          <!-- <a class="btn btn-info btn-xs" href="" role="button">分配角色</a>
+          <a class="btn btn-warning btn-xs" href="/admin/admin/getAddUser" role="button">锁定用户</a> -->
+        </td>
+      </tr>
+      {/volist}
+    </tbody>
+  </table>
+  <div class="page-wrapper">
+    <div class="page-size">
+      <span>共{$datas.count}条,每页显示&nbsp;&nbsp;</span>
+      <form class="form-inline" method="get" id="page-size-form">
+        <select class="form-control" id="page-size" name="size">
+          {volist name="[10, 20, 30, 40]" id="item"}
+          <!-- if -->
+          {if $datas.size == $item}
+          <option selected>{$item}</option>
+          {else /}
+          <option>{$item}</option>
+          {/if}
+          <!-- /if  -->
+          {/volist}
+        </select>
+      </form>
+      <span>&nbsp;&nbsp;条</span>
+      <script>
+        var select = document.getElementById("page-size");
+        var form = document.getElementById("page-size-form");
+
+        select.onchange = function () {
+          form.submit();
+        };
+      </script>
+    </div>
+
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="?page={$datas.page-1}#tab=permission">上一页</a></li>
+      {if $datas.pageCount < 6}
+      <!--  -->
+        {for start="1" end="$datas.pageCount"}
+        <li class="page-item"><a class="page-link" href="?page={$i}#tab=permission">{$i}</a></li>
+        {/for}
+
+      <!--  -->
+      {else /}
+      <!--  -->
+      <!-- 12345 -->
+      {if $datas.page < 5 }
+      <!--  -->
+      {for start="0" end="5"}
+      <li class="page-item"><a class="page-link" href="?page={$i+1}#tab=permission">{$i+1}</a></li>
+      {/for} 
+      <!--       -->
+      {if $datas.pageCount > 5 }
+      <li class="page-item"><a class="page-link" href="javascript:;">...</a></li>
+      <li class="page-item">
+        <a class="page-link" href="?page={$datas.pageCount}#tab=permission">{$datas.pageCount}</a>
+      </li>
+      {/if}
+      <!--  -->
+      {else /}
+      <li class="page-item"><a class="page-link" href="?page=1#tab=permission">1</a></li>
+      <li class="page-item"><a class="page-link" href="javascript:;">...</a></li>
+      <li class="page-item"><a class="page-link" href="?page={$datas.page-1}#tab=permission">{$datas.page-1}</a></li>
+      <li class="page-item"><a class="page-link" href="?page={$datas.page}#tab=permission">{$datas.page}</a></li>
+      <li class="page-item"><a class="page-link" href="?page={$datas.page+1}#tab=permission">{$datas.page+1}</a></li>
+
+      <li class="page-item"><a class="page-link" href="javascript:;">...</a></li>
+      <li class="page-item">
+        <a class="page-link" href="?page={$datas.pageCount}#tab=permission">{$datas.pageCount}</a>
+      </li>
+      {/if} 
+      {/if}
+
+      <li class="page-item"><a class="page-link" href="?page={$datas.page+1}#tab=permission">下一页</a></li>
+    </ul>
+  </div>
+</div>
+{/block}

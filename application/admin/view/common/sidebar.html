@@ -1,0 +1,47 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <a href="index3.html" class="brand-link">
+    <img
+      src="/static/dist/img/AdminLTELogo.png"
+      alt="AdminLTE Logo"
+      class="brand-image img-circle elevation-3"
+      style="opacity: 0.8"
+    />
+    <span class="brand-text font-weight-light">{$Think.session.adminInfo.user_name}</span>
+  </a>
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- 欢迎首页 -->
+        <li class="nav-item">
+          <a href="/admin/index/index#tab=index" id="nav-index" class="nav-link active">
+            <p>首页</p>
+          </a>
+        </li>
+
+        <!-- 用户管理 -->
+        <li class="nav-item menu-open">
+          <a href="javascript:;" class="nav-link">
+            <p>管理员管理 <i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-sidebar">
+            <li class="nav-item">
+              <a href="/admin/admin/user_profile#tab=admin"  id="nav-admin"  class="nav-link active">
+                <p>用户管理</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/admin/role#tab=role" id="nav-role"  class="nav-link">
+                <p>角色管理</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/admin/permission#tab=permission" id="nav-permission" class="nav-link">
+                <p>权限管理</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

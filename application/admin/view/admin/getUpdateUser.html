@@ -1,0 +1,24 @@
+{extend name="common/layout" /}
+<!--  -->
+{block name='body'}
+<div class="content-wrapper">
+  <h1 class="page-header center">{$title}</h1>
+  <form action="/admin/admin/setUpdateUser" method="post" class="form-wrapper">
+    <div class="form-group mx-sm-3 mb-2">
+      <input hidden="hidden" type="id" class="form-control" name="id" value="{$data.id}" />
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="exampleInputEmail1">用户</label>
+      <input type="username" class="form-control" name="user_name" value="{$data.user_name}" />
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="exampleInputPassword1">密码</label>
+      <input type="password" class="form-control" name="password" value="" />
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="exampleInputPassword1"></label>
+      <button type="submit" class="btn btn-primary">提交</button>
+    </div>
+  </form>
+</div>
+{/block}

@@ -1,0 +1,46 @@
+{extend name="common/layout" /}
+
+<!--  -->
+{block name='body'}
+<div class="content-wrapper">
+  <h1 class="page-header">{$title}</h1>
+  <div class="search-form-wrapper">
+    <form class="form-inline" method="get">
+      <input class="form-control mr-sm-2" type="search" placeholder="输入管理员名称" name="username" />
+      <button class="btn btn-outline-success my-sm-0 mr-sm-2" type="submit">搜索用户</button>
+      <a class="btn btn-outline-primary my-sm-0 mr-sm-2" href="/admin/admin/user_profile" >重置搜索</a>
+      <a class="btn btn-primary" href="/admin/admin/getAddUser" role="button">添加用户</a>
+    </form>
+  </div>
+
+  <table class="table table-bordered table-hover">
+    <tbody>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">用户名</th>
+        <th scope="col">用户创建时间</th>
+        <th scope="col">用户角色</th>
+        <th scope="col">操作</th>
+      </tr>
+      {volist name="dataAdmin" id="val"}
+      <tr>
+        <th scope="row">{$val.id}</th>
+        <td>{$val.user_name}</td>
+        <td>{$val.create_time}</td>
+        <td>{$val.role_name}</td>
+        <td>
+          <a class="btn btn-success btn-xs" href="/admin/admin/getUpdateUser/{$val.id}" role="button">编辑用户</a>
+          <a class="btn btn-danger btn-xs" href="/admin/admin/deleteUser/{$val.id}" role="button">删除用户</a>
+          <a class="btn btn-danger btn-xs" href="/admin/admin/deleteUser/{$val.id}?force=1" role="button"
+            >强制删除用户</a
+          >
+          <!-- TODO: !!完善分配角色功能 -->
+          <a class="btn btn-info btn-xs" href="" role="button">分配角色</a>
+          <a class="btn btn-warning btn-xs" href="/admin/admin/getAddUser" role="button">锁定用户</a>
+        </td>
+      </tr>
+      {/volist}
+    </tbody>
+  </table>
+</div>
+{/block}
